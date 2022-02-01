@@ -90,7 +90,19 @@ def upload():
         imgURL = request.form.get('imgURL')
         
         if requestSrc=="mobile":
-            result = predict_disease(base64Img,model,image_labels,true_label)
+            # binary = base64.b64decode(image_b64)
+            # image = np.asarray(bytearray(binary), dtype="uint8")
+            # image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+            image_array = base64.decodebytes(s)
+            np_image = np.array(image_array, dtype=np.float16) / 225.0
+            np_image = np.expand_dims(np_image,0)
+            res = model.predict_classes(np_image)
+            result = {
+                "Actual Label": str(trueLabel),
+                "Predicted Label": str(image_labels.classes_[res][0]),
+                "probability": float(np.max(res)),
+                "image_url": str(image_path)
+            }
         elif requestSrc=="webFile":
             result = predict_disease(file,model,image_labels,true_label)
         elif requestSrc=="webUrl":
