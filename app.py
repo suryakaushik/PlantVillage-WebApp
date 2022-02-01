@@ -24,6 +24,8 @@ from keras.preprocessing.image import ImageDataGenerator, img_to_array
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MultiLabelBinarizer
 
+# from gevent.pywsgi import WSGIServer
+
 # Define a flask app
 app = Flask(__name__)
 
@@ -36,7 +38,6 @@ CORS(app, support_credentials=True)
 
 # Dimension of resized image
 DEFAULT_IMAGE_SIZE = tuple((256, 256))
-train_test_dir = 'D:\Deep Learning Project\Final Code\dataset\PlantVillage'
 
 def predict_disease(image_path,model,image_labels,trueLabel):
     # image_array = convert_image_to_array(image_path)
@@ -79,45 +80,50 @@ def upload():
         filename = 'label_transform.pkl'
         image_labels = pickle.load(open(filename, 'rb'))
 
-        true_label=""
+        print("REQUEST BODY IS:",request.form)
+        true_label = ""
+        true_label = request.form.get('true_label')
 
-        # BUCKET = os.environ.get('BUCKET', None)
-        # aws_access_key_id= os.environ.get('aws_access_key_id', None)
-        # aws_secret_access_key= os.environ.get('aws_secret_access_key', None)
-        # aws_session_token= os.environ.get('aws_session_token', None)
-
-        print(request.form)
-        BUCKET = request.form.get('BUCKET')
-        aws_access_key_id= request.form.get('aws_access_key_id')
-        aws_secret_access_key= request.form.get('aws_secret_access_key')
-        aws_session_token= request.form.get('aws_session_token')
-        
-        s3 = boto3.client("s3", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,aws_session_token=aws_session_token)
-        bucket_resource = s3
-
+        requestSrc = request.form.get('requestSrc')
         # Get the file from post request
         file = request.files['file']
         imgURL = request.form.get('imgURL')
-        # if file:
-        #     filename = secure_filename(file.filename)
-        #     try:
-        #         bucket_resource.upload_fileobj(
-        #             file,
-        #             BUCKET,
-        #             filename,
-        #             ExtraArgs={
-        #                 "ACL": "public-read"
-        #             }
-        #         )
-        #     except Exception as e:
-        #         print("Something Happened: ", e)
-        #         return "Error in uploading file"
-        #     image_file ="{}{}".format('http://{}.s3.amazonaws.com/'.format(BUCKET), filename)
-
-        # result = predict_disease(image_file,model,image_labels,true_label)
-        result = predict_disease(file,model,image_labels,true_label)
+        
+        if requestSrc=="mobile":
+            result = predict_disease(base64Img,model,image_labels,true_label)
+        elif requestSrc=="webFile":
+            result = predict_disease(file,model,image_labels,true_label)
+        elif requestSrc=="webUrl":
+            result = predict_disease(imgURL,model,image_labels,true_label)
+        else:
+            BUCKET = request.form.get('BUCKET')
+            aws_access_key_id= request.form.get('aws_access_key_id')
+            aws_secret_access_key= request.form.get('aws_secret_access_key')
+            aws_session_token= request.form.get('aws_session_token')
+            s3 = boto3.client("s3", aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key,aws_session_token=aws_session_token)
+            bucket_resource = s3
+            filename = secure_filename(file.filename)
+            try:
+                bucket_resource.upload_fileobj(
+                    file,
+                    BUCKET,
+                    filename,
+                    ExtraArgs={
+                        "ACL": "public-read"
+                    }
+                )
+            except Exception as e:
+                print("Something Happened: ", e)
+                return "Error in uploading file"
+            image_file ="{}{}".format('http://{}.s3.amazonaws.com/'.format(BUCKET), filename)
+            result = predict_disease(image_file,model,image_labels,true_label)
         return jsonify(result)
     return "Only POST Requests Allowed!!"
 
 if __name__ == '__main__':
-    app.run(port=5000,debug=True) #http://127.0.0.1:5000/
+    app.run(port=5000,debug=False) #http://127.0.0.1:5000/
+    
+    # Serve the app with gevent
+    # http_server = WSGIServer(('', 5000), app)
+    # http_server.serve_forever()
+    # app.run()
