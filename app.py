@@ -97,23 +97,25 @@ def upload():
 
         # Get the file from post request
         file = request.files['file']
-        if file:
-            filename = secure_filename(file.filename)
-            try:
-                bucket_resource.upload_fileobj(
-                    file,
-                    BUCKET,
-                    filename,
-                    ExtraArgs={
-                        "ACL": "public-read"
-                    }
-                )
-            except Exception as e:
-                print("Something Happened: ", e)
-                return "Error in uploading file"
-            image_file ="{}{}".format('http://{}.s3.amazonaws.com/'.format(BUCKET), filename)
+        imgURL = request.form.get('imgURL')
+        # if file:
+        #     filename = secure_filename(file.filename)
+        #     try:
+        #         bucket_resource.upload_fileobj(
+        #             file,
+        #             BUCKET,
+        #             filename,
+        #             ExtraArgs={
+        #                 "ACL": "public-read"
+        #             }
+        #         )
+        #     except Exception as e:
+        #         print("Something Happened: ", e)
+        #         return "Error in uploading file"
+        #     image_file ="{}{}".format('http://{}.s3.amazonaws.com/'.format(BUCKET), filename)
 
-        result = predict_disease(image_file,model,image_labels,true_label)
+        # result = predict_disease(image_file,model,image_labels,true_label)
+        result = predict_disease(file,model,image_labels,true_label)
         return jsonify(result)
     return "Only POST Requests Allowed!!"
 
