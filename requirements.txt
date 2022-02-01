@@ -1,7 +1,7 @@
 pip==21.1.1
 itsdangerous==2.0
 Jinja2==3.0
-MarkupSafe==1.1.1
+MarkupSafe==2.0.0rc2
 cloudpickle==1.6.0
 flask==2.0.0
 flask-cors==3.0.10
