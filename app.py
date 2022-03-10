@@ -24,7 +24,7 @@ from keras.preprocessing.image import ImageDataGenerator, img_to_array
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MultiLabelBinarizer
 
-# from gevent.pywsgi import WSGIServer
+from gevent.pywsgi import WSGIServer
 
 # Define a flask app
 app = Flask(__name__)
@@ -133,9 +133,11 @@ def upload():
     return "Only POST Requests Allowed!!"
 
 if __name__ == '__main__':
-    app.run(port=5000,debug=False) #http://127.0.0.1:5000/
+    # app.run(port=5000,debug=False) #http://127.0.0.1:5000/
     
     # Serve the app with gevent
     # http_server = WSGIServer(('', 5000), app)
     # http_server.serve_forever()
     # app.run()
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=8080)
