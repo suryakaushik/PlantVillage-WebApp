@@ -1,5 +1,15 @@
-# PlantVillage-rnApp
+# PlantVillage App
 
+This is a WebApp to detect the diseases in Leaf of the Plant made using HTML, CSS, JQuery. It is served using Python-Flask BackEnd
+
+Used PlantVillage DataSet and Kaggle Notebook to cretae the model and export them as serialised .pkl files
+
+![pl](https://user-images.githubusercontent.com/41267674/157860587-23269942-39a1-443c-b79f-d74cac04469f.png)
+![pl1](https://user-images.githubusercontent.com/41267674/157860591-3f979243-91d5-4c0d-afa2-16681b05d6fc.png)
+![pl2](https://user-images.githubusercontent.com/41267674/157860595-3f61a78e-1bca-418d-8d9d-d921b6e441eb.png)
+![pl3](https://user-images.githubusercontent.com/41267674/157860599-550bdc82-2f0b-434c-b20f-ae0fb14aa1f8.png)
+
+**Note: The mobile version of the App is made and is available in a diiferent branch**
 ## Steps to run the App in DEV Environment:
 
 ### To Build the model and export as .pkl:
