@@ -29,7 +29,7 @@ app = Flask(__name__)
 
 # Dimension of resized image
 DEFAULT_IMAGE_SIZE = tuple((256, 256))
-train_test_dir = 'D:\Deep Learning Project\Final Code\dataset\PlantVillage'
+train_test_dir = 'D:\ALL PROJECTS\Deep Learning Project\clg project final\PlantVillageDataSet'
 
 def convert_image_to_array(image_dir):
     try:
@@ -90,7 +90,6 @@ def upload():
         filename = 'label_transform.pkl'
         image_labels = pickle.load(open(filename, 'rb'))
 
-        train_test_dir = 'D:\Deep Learning Project\Final Code\dataset\PlantVillage'
         true_label=""
         try:
             print("[INFO] Loading images ...")
