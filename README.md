@@ -15,6 +15,9 @@ Used PlantVillage DataSet and Kaggle Notebook to cretae the model and export the
 ### To Build the model and export as .pkl:
 - Run `my code1.ipynb` in Jupyter Notebook or VSCode
 
+- Save Model as .h5 file and covert it into json
+$ tensorflowjs_converter --input_format=keras /tmp/model.h5 /tmp/tfjs_model
+
 ### To Start the Flask Server:
 - pip -r requirements.txt
 - Run the app.py file
@@ -26,3 +29,9 @@ Note: All the image uploads are stored statically on the server for now.
 
 ## POSTMAN API TESTING
 https://www.getpostman.com/collections/4bc4bf9f7c784bd1a66b
+
+## REFERENCES
+WEBSITES TO INTEGRATE MODEL WITH JS:
+https://yannicksergeobam.medium.com/plant-disease-classification-with-tensorflow-2-0-268fe7f72c2a
+https://rexsimiloluwa.medium.com/building-a-plant-disease-classification-web-app-in-keras-and-tensorflow-js-d435829213fa
+https://medium.com/@jayantspeaks/converting-tensorflow-models-to-javascript-711f5bd3110e

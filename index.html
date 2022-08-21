@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <title>Plant Disease Detection </title>
+    <!-- add icon link -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1248/1248036.png?w=740" type="image/x-icon">
+
+    <link rel="stylesheet" href="temp.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="pages">
+            <div class="page" id="home">
+                <div id="images">
+                    <img src="images\pepperbellhealthy.png" alt="pepper bell" style="
+                    width: 150px;
+                    height: 150px;
+                    transform: rotate(-45deg);">
+                    <img src="images\potatohealthy.png" alt="potato" style="
+                    width: 150px;
+                    height: 150px;
+                    position: relative;
+                    left: 40%;
+                    transform: rotate(-45deg);">
+                    <img src="images\tomatohealthy.png" alt="tomato" style="
+                    width: 150px;
+                    height: 150px;
+                    transform: rotate(-45deg);">
+                </div>
+                <div id="landing">
+                    <a href="#main">Plant Disease Detection</a>
+                    <h4>Easy one-click crop (Pepper Bell, Potato and Tomato) disease detection with treatment
+                        suggestions !
+                    </h4>
+                </div>
+            </div>
+            <main class="page">
+                <h1 id="main"><a href="#home">Plant Disease Detection</a></h1>
+                <div class="main_page">
+                    <div class="con-input-file">
+                        <button onclick="handleClickRemove()" class="remove-image">
+                            <p class='close'></p>
+                        </button>
+                        <div class="con-bg">
+                            <img class="bg" src="" alt="">
+                        </div>
+                        <div class="img-1">
+                            <img src="./temp.svg" alt="svg image">
+                        </div>
+                        <div class="img-2">
+                            <div class="square-1"></div>
+                        </div>
+                        <div class="img-3">
+                            <div class="square-2"></div>
+                        </div>
+                        <div class="con-text">
+                            Drop the image of diseased leaf here,<br> or click here to Browse
+                        </div>
+                        <input id="imageFile" class="input" onchange="processFile(event)" ondrop="dropHandler(event)"
+                            ondragover="dragOverHandler(event)" ondragleave="dragLeave(event)"
+                            ondragenter="dragEnter(event)" ondragenter="dragEnter(event)" type="file" name="" id="">
+                    </div>
+                    <div class="info">
+                        <div id="disease_display_div" style="display: none;">
+                            <p id="disease_display"></p>
+                        </div>
+                        <div class="buttonhide">
+                            <button id="hidebtn" style="display: none; pointer-events: none;">Please wait while model is
+                                loading...</button>
+                        </div>
+                        <div class="info_prediction" style="display: none; font-family: system-ui;">
+                            <p style="font-size: x-large; font-weight: bold;">Plant - Disease name </p>
+                            <p id="prediction" style="font-size: larger; font-weight: lighter; 
+                            text-align: justify;"></p>
+                            <br>
+                            <p style="font-size: x-large; font-weight: bold;">Cause(s) </p>
+                            <p id="cause" style="font-size: larger; font-weight: lighter; 
+                            text-align: justify;"></p>
+                            <br>
+                            <p style="font-size: x-large; font-weight: bold;">Symptom(s) </p>
+                            <p id="symptom" style="font-size: larger; font-weight: lighter; 
+                            text-align: justify;"></p>
+                            <br>
+                            <p style="font-size: x-large; font-weight: bold;">Treatment(s) </p>
+                            <div id="treatment" style="font-size: larger; font-weight: lighter; 
+                            text-align: justify;"></div>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="temp.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
