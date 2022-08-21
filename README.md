@@ -4,10 +4,9 @@ This is a WebApp to detect the diseases in Leaf of the Plant made using HTML, CS
 
 Used PlantVillage DataSet and Kaggle Notebook to cretae the model and export them as serialised .pkl files
 
-![pl](https://user-images.githubusercontent.com/41267674/157860587-23269942-39a1-443c-b79f-d74cac04469f.png)
-![pl1](https://user-images.githubusercontent.com/41267674/157860591-3f979243-91d5-4c0d-afa2-16681b05d6fc.png)
-![pl2](https://user-images.githubusercontent.com/41267674/157860595-3f61a78e-1bca-418d-8d9d-d921b6e441eb.png)
-![pl3](https://user-images.githubusercontent.com/41267674/157860599-550bdc82-2f0b-434c-b20f-ae0fb14aa1f8.png)
+![pl](https://user-images.githubusercontent.com/41267674/185792644-54db3ec0-49fc-4503-a229-00c6b004345e.png)
+![pl1](https://user-images.githubusercontent.com/41267674/185792674-9a7f1dce-05cb-47ae-ad07-061d6ded7124.png)
+![pl2](https://user-images.githubusercontent.com/41267674/185792746-f2696b07-6598-4bf6-b78b-1449624dd5f2.png)
 
 **Note: The mobile version of the App is made and is available in a diiferent branch**
 ## Steps to run the App in DEV Environment:
@@ -30,8 +29,7 @@ Note: All the image uploads are stored statically on the server for now.
 ## POSTMAN API TESTING
 https://www.getpostman.com/collections/4bc4bf9f7c784bd1a66b
 
-## REFERENCES
-WEBSITES TO INTEGRATE MODEL WITH JS:
-https://yannicksergeobam.medium.com/plant-disease-classification-with-tensorflow-2-0-268fe7f72c2a
-https://rexsimiloluwa.medium.com/building-a-plant-disease-classification-web-app-in-keras-and-tensorflow-js-d435829213fa
-https://medium.com/@jayantspeaks/converting-tensorflow-models-to-javascript-711f5bd3110e
+## REFERENCES  TO INTEGRATE MODEL WITH JS
+- https://yannicksergeobam.medium.com/plant-disease-classification-with-tensorflow-2-0-268fe7f72c2a
+- https://rexsimiloluwa.medium.com/building-a-plant-disease-classification-web-app-in-keras-and-tensorflow-js-d435829213fa
+- https://medium.com/@jayantspeaks/converting-tensorflow-models-to-javascript-711f5bd3110e
